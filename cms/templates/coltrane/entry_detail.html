@@ -1,0 +1,20 @@
+<html>
+	<head>
+		<title>Entry detail</title>
+	</head>
+	<body>
+		<h1>Entry detail</h1>
+		<h2>Title: {{ object.title }}</h2>
+		<p>Published by, {{ object.full_name }} ({{ object.email }}), on {{ object.pub_date|date:"F j, Y" }}</p>
+		{% if object.body_html %}
+			<p>Blog Entry:</p>
+			{{ object.body_html|safe }}
+		{% else %}
+			{% if object.excerpt_html %}
+				<p>Entry excerpt:</p>
+				{{ object.excerpt_html|safe }}
+			{% endif %}	
+		{% endif %}
+		<p>Tags: {{ object.tags }}<p>
+	</body>
+</html>
