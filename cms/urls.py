@@ -25,7 +25,7 @@ urlpatterns = patterns('',
     (r'^search/', 'cms.search.views.search'),
     
     # Coltrane weblog
-    url(r'^weblog/', include('coltrane.urls')),
+    (r'^weblog/', include('coltrane.urls')),
     
     # (r'^weblog/(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\d{2})/(?P<slug>[-\w]+)/$', 
     #    'coltrane.views.entry_detail'),

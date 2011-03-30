@@ -49,7 +49,7 @@ class Entry(models.Model):
     
     # Metadata
     author = models.ForeignKey(User)
-    enable_comments = models.BooleanField(True)
+    enable_comments = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
     slug = models.SlugField(unique_for_date='pub_date',
                 help_text="Suggested value automatically generated from title. Must be unique.")
@@ -73,14 +73,15 @@ class Entry(models.Model):
             self.excerpt_html = markdown(self.excerpt)
         super(Entry, self).save(force_insert, force_update)
     
+    
     #def get_absolute_url(self):
     #    return "/weblog/%s/%s/" % (self.pub_date.strftime("%Y/%b/%d").lower(), self.slug)
     
     @models.permalink
     def get_absolute_url(self):
-        return ('coltrane_entry_detail', (), { 'year': self.pubdate.strftime("%Y"),
-                                               'month': self.pubdate.strftime("%b").lower(),
-                                               'day': self.pubdate.strftime("%d"),
+        return ('coltrane_entry_detail', None, { 'year': self.pub_date.strftime("%Y"),
+                                               'month': self.pub_date.strftime("%b").lower(),
+                                               'day': self.pub_date.strftime("%d"),
                                                'slug': self.slug })
     #get_absolute_url = models.permalink(get_absolute_url)
     
